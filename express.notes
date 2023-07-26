@@ -1,0 +1,91 @@
+Express is minimal, unopinionated framework that's flexible.
+Express helps you avoid using one huge monolithic request handler function with verbose Node.js APIs.
+Express allows you to write multiple small reqest handler functions that are made more pleasant by Express and its easier APIs.
+
+Express is a minimalist framework, for better or for worse! 
+It doesn't do everything for you like other frameworks do. You will have to look for other third-party libraries while building your app 'the Express way' to integrate with the application.
+
+Express is minimal!
+It sugarcoats Node.js to make easier to use.
+How does it do that?
+
+Express has just four major feactures.
+    - Middleware
+    - Routing
+    - Sub-applications
+    - Conveniences
+
+
+                 +-------------------------------+
+ request  ---->  |    Request handler function   |  ---->   response
+                 +-------------------------------+
+
+
+1. Middleware 
+    It's not Express-specific term and has been around for a while.
+    Rather than calling one large monolithic request handler function, we call several request handler functions.
+    Each request handler function deals with a small chunk of the work.
+    These smaller request handler functions are called "middleware functions", or sometimes just "middleware".
+    
+    Examples of several middlewares for a particular home page request.
+        - Logging middleware
+        - Authorization middleware
+        - "send the info" middleware
+
+        What all middlwares might do
+            -> Log every request that comes into our server.
+            -> When the logger is all done logging, it will continue onto the next middleware in the chain.
+            -> This next middleware function might authenticate users.
+            -> If they're visiting a forbidden url, respond with a "not found" page.
+            -> If they're allowed to visit it, continue to the next middleware function in the chain.
+            -> The next middleware might send the homepage and be done.
+
+    Remember, there are already written middelwares such as middleware for securtiy and authentication; there's middleware to parse cookies and sessions, etc,.
+
+
+2. Routing 
+    It allows you to partition your application's behaviour by route.
+    Like middleware, it breaks the one monolithic request handler function into smaller pieces.
+    Unlike middleware, however, these request handler functions are executing condionally, depending on what URL and HTTP method a client sends.
+
+    For example, we might build a webpage with a homepage and a guestbook.
+    When the user sends a HTTP GET request to the homepage URL, Express should send the homepage.
+    But when the user visit the guestbook URL, it should send the HTML for guestbook, not for the homepage!
+    If a user commments in the guestbook (with a HTTP POST to a particular URL), this should update the guestbook.
+
+
+
+3. Sub-application (Router)
+        - Express allows you to define routers that can be used in larger applications. Writing these sub-applications is almost exactly like writing "normal-sized" ones, but it allows
+        you to further compartmentalize your app into smaller pieces.
+        - For example,
+            you might have an administration panel in your app and that function pretty differently from rest of your application.
+            you could put the panel side-by-side with the rest of your middleware and routes.
+            but you can also create a sub-application for your admin panel.
+
+            
+
+            Express application 
+                --> admin panel router
+                --> api router
+                        --> api v1 router
+                        --> api v2 router
+                --> single-page application router
+    
+    express.Router
+        - A "Router" instance is a complete middleware and routing system; for this reason, it is often referred to as "mini-app"
+
+
+
+4. Conveniences
+    Some already written middlewares and bunch of other functions
+    In raw Node.js, if you want to write a request handler that sends a JPEG file from a folder, that's a fair bit of code.
+    In express, that's just one call to the sendFile() method.
+
+
+    
+API 
+    way for one piece of code to talk to another piece of code
+    Software interface, where a user interface is meant to be consumed by human users. Software interface is meant to be consumed by code.
+
+
