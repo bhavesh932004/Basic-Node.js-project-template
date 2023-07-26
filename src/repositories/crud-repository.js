@@ -34,7 +34,7 @@ class CrudRepository {
 
   async getAll() {
     console.log("inside crud repository calling findAll");
-    const response = await this.model.findAl();
+    const response = await this.model.findAll();
     return response;
   }
 

@@ -7,8 +7,8 @@ console.log("inside airplane routes");
 router.post(
   "/",
   AirplaneMiddlewares.validateCreateRequest,
-  AirplaneController.create_airplane
+  AirplaneController.createAirplane
 );
-router.get("/", AirplaneController.get_airplanes);
+router.get("/", AirplaneController.getAirplanes);
 
 module.exports = router;

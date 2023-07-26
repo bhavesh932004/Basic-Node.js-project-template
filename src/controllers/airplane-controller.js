@@ -3,7 +3,7 @@ const { AirplaneService } = require("../services");
 
 const { ErrorResponse, SuccessResponse } = require("../utils/common");
 
-async function create_airplane(req, res) {
+async function createAirplane(req, res) {
   try {
     const airplane = await AirplaneService.createAirplane({
       modalNumber: req.body.modalNumber,
@@ -20,7 +20,7 @@ async function create_airplane(req, res) {
   }
 }
 
-async function get_airplanes(req, res) {
+async function getAirplanes(req, res) {
   console.log("inside controller");
   try {
     const airplanes = await AirplaneService.getAirplanes();
@@ -34,6 +34,6 @@ async function get_airplanes(req, res) {
 }
 
 module.exports = {
-  create_airplane,
-  get_airplanes,
+  createAirplane,
+  getAirplanes,
 };
